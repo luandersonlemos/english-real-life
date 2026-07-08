@@ -2,6 +2,14 @@
 
 Treinador pessoal de inglês baseado no método **English by Real Life** — aprendizado por blocos temáticos do dia a dia, com foco em fala, imagens e revisão espaçada.
 
+## Links
+
+| | URL |
+|---|---|
+| **Demo ao vivo** | [english-real-life.vercel.app](https://english-real-life.vercel.app) |
+| **Repositório** | [github.com/luandersonlemos/english-real-life](https://github.com/luandersonlemos/english-real-life) |
+| **Deploy (Vercel)** | [vercel.com/luandersonlemos-projects/english-real-life](https://vercel.com/luandersonlemos-projects/english-real-life) |
+
 ## Visão do produto
 
 Ferramenta de portfólio com potencial de monetização futura. O diferencial é o método pedagógico personalizado:
@@ -232,7 +240,20 @@ Ferramenta de portfólio com potencial de monetização futura. O diferencial é
 
 ## Como rodar
 
+### Online (recomendado)
+
+Acesse direto: **[english-real-life.vercel.app](https://english-real-life.vercel.app)**
+
+### Local — Windows
+
+1. Clone o repositório
+2. Dê dois cliques em `instalar.bat` (primeira vez)
+3. Dê dois cliques em `iniciar.bat`
+
+### Local — terminal
+
 ```bash
+git clone https://github.com/luandersonlemos/english-real-life.git
 cd english-real-life
 npm install
 npm run dev
