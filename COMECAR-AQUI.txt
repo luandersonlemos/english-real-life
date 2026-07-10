@@ -1,0 +1,105 @@
+╔══════════════════════════════════════════════════════════════╗
+║  ENGLISH BY REAL LIFE — COMECE AQUI (guia para iniciantes)   ║
+╚══════════════════════════════════════════════════════════════╝
+
+📁 ONDE VOCÊ ESTÁ
+   Pasta do projeto (esta pasta):
+   C:\Users\luand\OneDrive\Área de Trabalho\Idioma\english-real-life
+
+   Você deve ver estes arquivos aqui:
+   - iniciar.bat   ← o principal
+   - motor.bat
+   - instalar.bat
+   - pasta src\
+   - pasta content\
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PASSO 1 — ABRIR O APP (todo dia)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ONDE:  Nesta pasta (english-real-life), no Explorador de Arquivos
+
+   ATENÇÃO — NÃO É UMA PASTA!
+   Você deve clicar em um ARQUIVO. O Windows pode esconder a extensão
+   e mostrar só "iniciar" — mas é um arquivo .bat
+
+   Para ver a extensão:
+   Explorador de Arquivos → Exibir → marque "Extensões de nomes de arquivos"
+
+   COMO:  Duplo clique em UM destes arquivos:
+          → ABRIR-APP.bat   (RECOMENDADO — sem espaco no nome)
+          → ABRIR APP.bat   (alternativa)
+          → abrir-app.ps1   (se os .bat nao funcionarem)
+
+   O que você DEVE ver depois do clique:
+   ✓ Uma janela PRETA abre e FICA aberta (não some!)
+   ✓ Depois de ~15 segundos o navegador abre sozinho
+
+   Se a janela some rápido ou o navegador fica carregando:
+   → Rode fechar-app.bat
+   → Depois rode ABRIR APP.bat de novo
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PASSO 2 — ESTUDAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ONDE:  No navegador (Chrome, Edge, etc.)
+   URL:   http://localhost:3000
+
+   O motor Python atualiza sua aula do dia sozinho enquanto você estuda.
+   Você verá o card "Motor Python — aula do dia" na página inicial.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PASSO 3 — PARAR O APP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ONDE:  Na janela preta que abriu no Passo 1
+   COMO:  Pressione Ctrl + C  ou  feche a janela
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PRIMEIRA VEZ NO PC? (só uma vez)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ONDE:  Nesta mesma pasta
+   COMO:  Duplo clique → instalar.bat
+   DEPOIS: Duplo clique → iniciar.bat
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ SE ALGO DER ERRADO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   • "Node não encontrado" → instale em https://nodejs.org e rode instalar.bat
+   • "Python não encontrado" → instale em https://python.org (motor extra)
+   • Página não abre → espere a janela preta mostrar "Ready" e acesse:
+     http://localhost:3000
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ APP NO CELULAR (PWA)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   ONDE:  Celular — Chrome (Android) ou Safari (iPhone)
+
+   LINK:  https://english-real-life.vercel.app
+
+   ANDROID:
+   → Abra o link no Chrome
+   → Menu ⋮ → "Instalar app" ou "Adicionar à tela inicial"
+
+   IPHONE:
+   → Abra o link no Safari
+   → Compartilhar → "Adicionar à Tela de Início"
+
+   Depois o ícone 🌍 EBRL fica na tela inicial como um app.
+
+
+   ONDE:  Nesta pasta, duplo clique ou terminal aberto AQUI
+
+   motor.bat setup   → reconfigura o motor Python
+   motor.bat daily   → gera a aula do dia manualmente
+   motor.bat status  → mostra seu progresso

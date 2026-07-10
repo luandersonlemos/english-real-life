@@ -343,7 +343,7 @@ export const block18: Block = {
       activities: [
         "Revisão completa do Bloco 18",
         "Quiz de domínio — 80%",
-        "Parabéns! Você completou os 18 blocos do English by Real Life!",
+        "Parabéns! Fase 2 completa — o Bloco 19 (passado He/She/It) será liberado!",
       ],
     },
   ],

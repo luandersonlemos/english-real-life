@@ -1,0 +1,21 @@
+{
+  "currentBlockId": "block-03",
+  "lastVisit": "2026-07-09T12:00:00.000Z",
+  "blocks": {
+    "block-01": {
+      "blockId": "block-01",
+      "status": "mastered",
+      "currentStep": 9,
+      "masteryScore": 90,
+      "startedAt": "2026-07-01T10:00:00.000Z",
+      "masteredAt": "2026-07-02T18:00:00.000Z",
+      "reviewDates": { "1": true, "2": true }
+    },
+    "block-02": {
+      "blockId": "block-02",
+      "status": "in_progress",
+      "currentStep": 4,
+      "reviewDates": {}
+    }
+  }
+}

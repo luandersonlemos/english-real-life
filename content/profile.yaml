@@ -1,0 +1,22 @@
+# Perfil do aluno — usado pelo motor Python (EBRL Engine)
+name: Luanderson
+native_language: pt-BR
+level: beginner
+
+# Quantos minutos por dia o motor deve planejar
+daily_minutes: 20
+
+# Foco atual (o motor prioriza blocos compatíveis)
+focus:
+  tense: present # present | past
+  pronouns: [I, You, We, They] # ou [He, She, It]
+
+# Temas da sua vida real — o motor usa para sugerir vocabulário e situações
+life_themes:
+  - mercado e compras
+  - trabalho remoto
+  - café da manhã
+  - transporte na cidade
+
+# Revisão espaçada (dias após dominar um bloco)
+review_intervals: [1, 2, 4, 7]

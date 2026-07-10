@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# EBRL Python engine (gerado localmente)
+/content/catalog.json
+/content/progress.json
+/output/
+/abrir-log.txt
+
+# python engine output
+/public/audio/*.mp3
+__pycache__/
+*.py[cod]
+.venv/

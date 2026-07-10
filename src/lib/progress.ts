@@ -1,5 +1,8 @@
 import type { BlockProgress, UserProgress } from "@/types";
 import { blocks } from "@/data/blocks";
+import { scheduleMotorSync } from "@/lib/motor-sync";
+import { emitProgressSave } from "@/lib/progress-cloud";
+import { isBlockInPlan, type PlanId } from "@/lib/plans";
 
 const STORAGE_KEY = "ebrl-progress";
 
@@ -49,6 +52,7 @@ export function loadProgress(): UserProgress {
     });
 
     if (changed) saveProgress(saved);
+    else scheduleMotorSync(saved);
     return saved;
   } catch {
     return createInitialProgress();
@@ -59,6 +63,8 @@ export function saveProgress(progress: UserProgress): void {
   if (typeof window === "undefined") return;
   progress.lastVisit = new Date().toISOString();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  scheduleMotorSync(progress);
+  emitProgressSave(progress);
 }
 
 export function updateBlockProgress(
@@ -109,7 +115,11 @@ export function masterBlock(blockId: string, score: number): UserProgress {
   return progress;
 }
 
-export function canAccessBlock(blockId: string): boolean {
+export function canAccessBlock(blockId: string, plan: PlanId = "premium"): boolean {
+  const block = blocks.find((b) => b.id === blockId);
+  if (!block) return false;
+  if (!isBlockInPlan(block.number, plan)) return false;
+
   const progress = loadProgress();
   const blockProgress = progress.blocks[blockId];
   return blockProgress?.status !== "locked";
@@ -126,4 +136,14 @@ export function markReviewDay(blockId: string, day: number): UserProgress {
   };
   saveProgress(progress);
   return progress;
+}
+
+export function exportProgressJson(): string {
+  return JSON.stringify(loadProgress(), null, 2);
+}
+
+export function importProgressJson(raw: string): UserProgress {
+  const parsed = JSON.parse(raw) as UserProgress;
+  saveProgress(parsed);
+  return parsed;
 }

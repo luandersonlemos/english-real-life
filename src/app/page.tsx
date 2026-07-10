@@ -3,13 +3,17 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { BlockCard } from "@/components/BlockCard";
+import { DailyLessonCard } from "@/components/DailyLessonCard";
+import { InstallGuideCard } from "@/components/InstallGuideCard";
 import { blocks } from "@/data/blocks";
 import { loadProgress } from "@/lib/progress";
+import { useAuth } from "@/contexts/auth-context";
 import type { BlockProgress, UserProgress } from "@/types";
 import Link from "next/link";
 
 export default function HomePage() {
   const [progress, setProgress] = useState<UserProgress | null>(null);
+  const { plan, user, supabaseEnabled } = useAuth();
 
   useEffect(() => {
     setProgress(loadProgress());
@@ -54,6 +58,18 @@ export default function HomePage() {
                 >
                   Começar Bloco 1 →
                 </Link>
+                <Link
+                  href="/revisao"
+                  className="rounded-xl border border-amber-300 bg-amber-50 px-6 py-3 text-sm font-semibold text-amber-900 hover:bg-amber-100 transition-colors"
+                >
+                  Revisão rápida (5 min) →
+                </Link>
+                <Link
+                  href={user ? "/conta" : "/auth"}
+                  className="rounded-xl border border-teal-200 bg-white px-6 py-3 text-sm font-semibold text-teal-700 hover:bg-teal-50 transition-colors"
+                >
+                  {user ? "Minha conta" : "Entrar / Criar conta"}
+                </Link>
                 <span className="rounded-xl border border-slate-200 px-6 py-3 text-sm text-slate-600 bg-white">
                   {masteredCount}/{blocks.length} blocos dominados
                 </span>
@@ -61,6 +77,22 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <DailyLessonCard />
+
+        {supabaseEnabled && plan === "free" && (
+          <section className="mx-auto max-w-5xl px-4 pb-4">
+            <article className="rounded-2xl border border-violet-200 bg-violet-50 px-5 py-4 text-sm text-violet-800">
+              Plano <strong>Gratuito</strong> — blocos 1 a 3 liberados.{" "}
+              <Link href="/conta" className="font-semibold underline">
+                Ative o Premium
+              </Link>{" "}
+              para os 24 blocos.
+            </article>
+          </section>
+        )}
+
+        <InstallGuideCard />
 
         <section className="mx-auto max-w-5xl px-4 py-12">
           <h2 className="text-xl font-semibold text-slate-900 mb-6">
@@ -72,14 +104,15 @@ export default function HomePage() {
                 key={block.id}
                 block={block}
                 progress={getBlockProgress(block.id)}
+                plan={plan}
               />
             ))}
 
-            <article className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
-              <span className="text-3xl">🎓</span>
-              <p className="mt-2 font-medium text-emerald-800">18 blocos completos!</p>
-              <p className="text-sm text-emerald-600 mt-1">
-                Fase 1: I/You/We/They · Fase 2: He/She/It · 270 palavras
+            <article className="rounded-2xl border border-violet-200 bg-violet-50 p-6 text-center">
+              <span className="text-3xl">🌙</span>
+              <p className="mt-2 font-medium text-violet-800">Fase 3 — Passado He/She/It</p>
+              <p className="text-sm text-violet-600 mt-1">
+                Blocos 19–24 · Domine o Bloco 18 para liberar · 360 palavras no total
               </p>
             </article>
           </div>

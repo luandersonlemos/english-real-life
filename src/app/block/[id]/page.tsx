@@ -13,6 +13,8 @@ import {
   masterBlock,
   startBlock,
 } from "@/lib/progress";
+import { useAuth } from "@/contexts/auth-context";
+import { isBlockInPlan } from "@/lib/plans";
 import type { LessonStep } from "@/types";
 
 export default function BlockPage() {
@@ -22,15 +24,21 @@ export default function BlockPage() {
   const block = getBlock(blockId);
   const [step, setStep] = useState<LessonStep>("intro");
   const [accessDenied, setAccessDenied] = useState(false);
+  const [premiumLocked, setPremiumLocked] = useState(false);
+  const { plan } = useAuth();
 
   useEffect(() => {
     if (!block) return;
-    if (!canAccessBlock(blockId)) {
+    if (!isBlockInPlan(block.number, plan)) {
+      setPremiumLocked(true);
+      return;
+    }
+    if (!canAccessBlock(blockId, plan)) {
       setAccessDenied(true);
       return;
     }
     startBlock(blockId);
-  }, [block, blockId]);
+  }, [block, blockId, plan]);
 
   if (!block) {
     return (
@@ -40,6 +48,27 @@ export default function BlockPage() {
           <p className="text-slate-500">Bloco não encontrado.</p>
           <Link href="/" className="mt-4 inline-block text-teal-600">
             ← Voltar ao início
+          </Link>
+        </main>
+      </>
+    );
+  }
+
+  if (premiumLocked) {
+    return (
+      <>
+        <Header />
+        <main className="mx-auto max-w-3xl px-4 py-16 text-center">
+          <span className="text-5xl">⭐</span>
+          <h1 className="mt-4 text-2xl font-bold text-slate-900">Bloco Premium</h1>
+          <p className="mt-2 text-slate-500">
+            O plano gratuito inclui os blocos 1 a 3. Ative o Premium para continuar.
+          </p>
+          <Link
+            href="/conta"
+            className="mt-6 inline-block rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white"
+          >
+            Ver planos →
           </Link>
         </main>
       </>

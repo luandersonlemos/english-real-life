@@ -82,12 +82,15 @@ export function LessonFlow({
                   frases
                 </li>
                 <li>✓ Frases com {block.pronouns.join(", ")}</li>
-                {block.pronouns.includes("He") && (
+                {block.pronouns.includes("He") && block.tense === "present" && (
                   <li>✓ Nova fase: He, She e It — o verbo muda no presente!</li>
                 )}
+                {block.pronouns.includes("He") && block.tense === "past" && (
+                  <li>✓ Fase 3: He, She e It no passado — o verbo NÃO ganha -s!</li>
+                )}
                 <li>✓ 3 situações reais para praticar</li>
-                {block.tense === "past" && (
-                  <li>✓ Primeiro bloco no passado — conecta com o Bloco 1</li>
+                {block.tense === "past" && !block.pronouns.includes("He") && (
+                  <li>✓ Passado com I, You, We, They — conecta com os blocos do presente</li>
                 )}
               </ul>
             </div>
@@ -163,7 +166,7 @@ export function LessonFlow({
             <p className="text-slate-500">{block.verb.portuguese}</p>
             <button
               type="button"
-              onClick={() => speak(block.verb.english)}
+              onClick={() => void speak(block.verb.english)}
               className="mt-4 rounded-full bg-teal-100 px-4 py-2 text-sm text-teal-700 hover:bg-teal-200"
             >
               🔊 Ouvir
@@ -184,7 +187,7 @@ export function LessonFlow({
                 </div>
                 <button
                   type="button"
-                  onClick={() => speak(`${p} ${block.verb.conjugations[p]}`)}
+                  onClick={() => void speak(`${p} ${block.verb.conjugations[p]}`)}
                   className="text-lg hover:scale-110 transition-transform"
                 >
                   🔊
@@ -200,6 +203,14 @@ export function LessonFlow({
               <br />
               He / She / It →{" "}
               <em>{block.verb.conjugations.He ?? `${block.verb.english}s`}</em> (+s no final)
+            </div>
+          )}
+
+          {block.pronouns.includes("He") && block.tense === "past" && (
+            <div className="rounded-xl border border-violet-200 bg-violet-50 p-4 text-sm text-violet-800">
+              <strong>Regra do passado:</strong> He / She / It usam a mesma forma —{" "}
+              <em>He {block.verb.conjugations.He ?? block.verb.english}</em>,{" "}
+              <em>She {block.verb.conjugations.She ?? block.verb.english}</em> — sem -s!
             </div>
           )}
 
@@ -248,7 +259,7 @@ export function LessonFlow({
                   <p className="text-sm text-slate-700">{sentence.english}</p>
                   <button
                     type="button"
-                    onClick={() => speak(sentence.english)}
+                    onClick={() => void speak(sentence.english)}
                     className="shrink-0 text-sm ml-3"
                   >
                     🔊
@@ -288,7 +299,7 @@ export function LessonFlow({
                   </div>
                   <button
                     type="button"
-                    onClick={() => speak(sentence.english)}
+                    onClick={() => void speak(sentence.english)}
                     className="shrink-0 rounded-full bg-slate-100 p-3 hover:bg-teal-100 transition-colors"
                   >
                     🔊
@@ -330,7 +341,7 @@ export function LessonFlow({
                     </div>
                     <button
                       type="button"
-                      onClick={() => speak(line.text)}
+                      onClick={() => void speak(line.text)}
                       className="shrink-0 text-sm hover:scale-110 transition-transform"
                     >
                       🔊
@@ -505,7 +516,7 @@ function ExampleSentence({
       </div>
       <button
         type="button"
-        onClick={() => speak(sentence)}
+        onClick={() => void speak(sentence)}
         className="shrink-0 text-sm"
       >
         🔊
@@ -527,7 +538,7 @@ function SpeakingLine({ sentence }: { sentence: string }) {
       <div className="flex gap-2">
         <button
           type="button"
-          onClick={() => speak(sentence)}
+          onClick={() => void speak(sentence)}
           className="rounded-lg bg-slate-100 px-3 py-1.5 text-sm hover:bg-teal-100"
         >
           🔊 Ouvir

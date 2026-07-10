@@ -1,0 +1,76 @@
+# Bloco modelo — copie para block-19.yaml e preencha
+id: block-19
+number: 19
+title: "Meu Dia (Ele/Ela)"
+titleEn: "His/Her Day"
+theme: "Rotina de outra pessoa — passado"
+description: "Fale sobre o dia de alguém no passado."
+emoji: "🌙"
+tense: past
+pronouns: [He, She, It]
+masteryThreshold: 80
+
+words:
+  - id: w-coffee
+    english: coffee
+    portuguese: café
+    emoji: "☕"
+    imageHint: uma xícara de café
+    example: He wanted coffee.
+
+verb:
+  id: v-wanted
+  english: want
+  portuguese: querer
+  emoji: "🙏"
+  imageHint: pessoa desejando algo
+  conjugations:
+    He: wanted
+    She: wanted
+    It: wanted
+
+connector:
+  id: c-and
+  english: and
+  portuguese: e
+  emoji: "➕"
+  imageHint: duas coisas juntas
+
+sentences:
+  - id: s1
+    english: He wanted coffee.
+    portuguese: Ele queria café.
+    pronoun: He
+    tense: past
+    situation: Manhã dele
+
+situations:
+  - id: sit1
+    title: Manhã
+    description: Ele acordou cedo.
+    emoji: "🌅"
+    dialogue:
+      - speaker: Friend
+        text: Did he want coffee?
+        translation: Ele queria café?
+
+reviewPlan:
+  - day: 1
+    label: "Dia 1"
+    activities: [Rever palavras, Falar 5 frases em voz alta]
+  - day: 2
+    label: "Dia 2"
+    activities: [Flashcards, Situação real]
+  - day: 4
+    label: "Dia 4"
+    activities: [Quiz rápido]
+  - day: 7
+    label: "Dia 7"
+    activities: [Revisão completa]
+
+masteryQuiz:
+  - id: q1
+    type: match
+    prompt: "wanted = ?"
+    options: [querer, ir, ter, gostar]
+    correctIndex: 0

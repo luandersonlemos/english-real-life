@@ -17,6 +17,12 @@ import { block15 } from "./block-15";
 import { block16 } from "./block-16";
 import { block17 } from "./block-17";
 import { block18 } from "./block-18";
+import { block19 } from "./block-19";
+import { block20 } from "./block-20";
+import { block21 } from "./block-21";
+import { block22 } from "./block-22";
+import { block23 } from "./block-23";
+import { block24 } from "./block-24";
 
 export const blocks: Block[] = [
   block01,
@@ -37,6 +43,12 @@ export const blocks: Block[] = [
   block16,
   block17,
   block18,
+  block19,
+  block20,
+  block21,
+  block22,
+  block23,
+  block24,
 ];
 
 export function getBlock(id: string): Block | undefined {

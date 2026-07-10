@@ -2,6 +2,8 @@
 
 import type { BlockProgress } from "@/types";
 import type { Block } from "@/types";
+import type { PlanId } from "@/lib/plans";
+import { isBlockInPlan } from "@/lib/plans";
 import Link from "next/link";
 
 const tenseLabel = { present: "Presente", past: "Passado" } as const;
@@ -37,11 +39,13 @@ const statusConfig = {
 interface BlockCardProps {
   block: Block;
   progress: BlockProgress;
+  plan?: PlanId;
 }
 
-export function BlockCard({ block, progress }: BlockCardProps) {
+export function BlockCard({ block, progress, plan = "premium" }: BlockCardProps) {
   const config = statusConfig[progress.status];
-  const isClickable = progress.status !== "locked";
+  const planLocked = !isBlockInPlan(block.number, plan);
+  const isClickable = progress.status !== "locked" && !planLocked;
 
   const content = (
     <article
@@ -107,9 +111,19 @@ export function BlockCard({ block, progress }: BlockCardProps) {
         </p>
       )}
 
-      {progress.status === "locked" && (
+      {progress.status === "locked" && !planLocked && (
         <p className="mt-4 text-sm text-slate-400">
           Complete o bloco anterior com 80% de domínio para desbloquear
+        </p>
+      )}
+
+      {planLocked && (
+        <p className="mt-4 text-sm text-violet-600">
+          🔒 Premium —{" "}
+          <Link href="/conta" className="underline font-medium">
+            ative o plano
+          </Link>{" "}
+          para acessar este bloco
         </p>
       )}
     </article>

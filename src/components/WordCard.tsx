@@ -13,10 +13,14 @@ export function WordCard({ word, index }: WordCardProps) {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={() => setFlipped(!flipped)}
-      className="group relative w-full text-left"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") setFlipped(!flipped);
+      }}
+      className="group relative w-full text-left cursor-pointer"
       aria-label={`Card da palavra ${word.english}`}
     >
       <div
@@ -34,12 +38,13 @@ export function WordCard({ word, index }: WordCardProps) {
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              speak(word.english);
+              void speak(word.english);
             }}
-            className="rounded-full bg-slate-100 p-2 text-sm hover:bg-teal-100 transition-colors"
-            aria-label="Ouvir pronúncia"
+            className="rounded-full bg-slate-100 px-3 py-2 text-xs hover:bg-teal-100 transition-colors"
+            aria-label="Ouvir de novo"
+            title="Ouvir de novo"
           >
-            🔊
+            🔊 Ouvir
           </button>
         </div>
 
@@ -61,6 +66,6 @@ export function WordCard({ word, index }: WordCardProps) {
           </div>
         )}
       </div>
-    </button>
+    </div>
   );
 }

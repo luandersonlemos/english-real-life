@@ -230,27 +230,40 @@ Ferramenta de portfólio com potencial de monetização futura. O diferencial é
 | Pronomes | He, She, It |
 | Situações | Manhã no escritório, Reunião de equipe, Hora extra |
 
-## Ciclo completo — 18 blocos
+## Ciclo completo — 24 blocos
 
 | Fase | Blocos | Pronomes | Tempo |
 |------|--------|----------|-------|
 | 1 | 1–6 | I, You, We, They | Presente |
 | 1 | 7–12 | I, You, We, They | Passado |
 | 2 | 13–18 | He, She, It | Presente (+s) |
+| 3 | 19–24 | He, She, It | Passado |
 
 ## Como rodar
 
+> **Iniciante?** Abra o arquivo `COMECAR-AQUI.txt` na pasta do projeto — ele explica passo a passo *onde* clicar.
+
 ### Online (recomendado)
 
-Acesse direto: **[english-real-life.vercel.app](https://english-real-life.vercel.app)**
+| | |
+|---|---|
+| **Onde** | Qualquer navegador (Chrome, Edge, celular) |
+| **Endereço** | [english-real-life.vercel.app](https://english-real-life.vercel.app) |
 
 ### Local — Windows
 
-1. Clone o repositório
-2. Dê dois cliques em `instalar.bat` (primeira vez)
-3. Dê dois cliques em `iniciar.bat`
+| Passo | Onde | O que fazer |
+|-------|------|-------------|
+| 1ª vez | Pasta `english-real-life` no Explorador de Arquivos | Duplo clique em `instalar.bat` |
+| Todo dia | Mesma pasta | Duplo clique em `iniciar.bat` |
+| Estudar | Navegador (abre sozinho) | http://localhost:3000 |
+| Parar | Janela preta do `iniciar.bat` | `Ctrl + C` ou fechar a janela |
 
-### Local — terminal
+### Local — terminal (avançado)
+
+| | |
+|---|---|
+| **Onde** | Terminal aberto **dentro** da pasta `english-real-life` |
 
 ```bash
 git clone https://github.com/luandersonlemos/english-real-life.git
@@ -259,7 +272,7 @@ npm install
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000)
+Depois abra [http://localhost:3000](http://localhost:3000) no navegador.
 
 ## Stack
 
@@ -296,18 +309,89 @@ Abra [http://localhost:3000](http://localhost:3000)
 - [x] Bloco 16 — Na Rua He/She/It (goes + so) · fase 2
 - [x] Bloco 17 — No Restaurante He/She/It (has + with) · fase 2
 - [x] Bloco 18 — No Trabalho He/She/It (works + because) · fase 2
-- [ ] Fase 3: passado He/She/It + monetização
-- [ ] Fase 3: monetização
-- [ ] Blocos 7–12 (passado simples)
-- [ ] Introdução de He, She, It
-- [ ] Imagens reais (Unsplash/API)
+- [x] Bloco 19 — Ele, Ela — Ontem (wanted + then) · fase 3
+- [x] Bloco 20 — No Mercado He/She/It Ontem (needed + but) · fase 3
+- [x] Bloco 21 — Com Amigos He/She/It Ontem (liked + or) · fase 3
+- [x] Bloco 22 — Na Rua He/She/It Ontem (went + so) · fase 3
+- [x] Bloco 23 — No Restaurante He/She/It Ontem (had + with) · fase 3
+- [x] Bloco 24 — No Trabalho He/She/It Ontem (worked + because) · fase 3
+- [x] Monetização (login, nuvem, planos free/premium)
 
-### Fase 3 — Monetização
-- [ ] Autenticação de usuários
-- [ ] Progresso na nuvem
+## Motor Python (EBRL Engine)
+
+O app web é a interface visual; o **motor Python** continua o aprendizado fora da plataforma — aula diária, revisão, diário da vida real e novos blocos via YAML.
+
+```
+content/           # Perfil, progresso, diário, blocos YAML
+scripts/ebrl/      # Pacote Python
+output/            # Aulas e exercícios gerados (local)
+motor.bat          # Atalho Windows
+```
+
+### Primeira vez
+
+Basta dar duplo clique em **`iniciar.bat`** — ele instala tudo, configura o motor e abre o app.
+
+Ou manualmente: `motor.bat setup`
+
+### Uso diário (automático)
+
+1. Abra com `iniciar.bat` e estude normalmente
+2. O progresso sincroniza sozinho com o motor Python
+3. A **aula do dia** aparece na página inicial e em `output/daily-AAAA-MM-DD.md`
+
+### Diário da vida real (opcional)
+
+Escreva situações em `content/journal/` — o motor gera exercícios automaticamente.
+
+### Criar bloco novo (ex.: Bloco 19)
+
+1. Copie `content/blocks/_template.yaml` → `content/blocks/block-19.yaml`
+2. Preencha e rode: `python -m ebrl build content/blocks/block-19.yaml`
+3. Rode `motor.bat sync` para atualizar o catálogo
+
+### Comandos
+
+| Comando | O que faz |
+|---------|-----------|
+| `motor.bat sync` | Exporta os 24 blocos para `content/catalog.json` |
+| `motor.bat daily` | Plano do dia (revisão + bloco atual + fala) |
+| `motor.bat status` | Resumo do progresso |
+| `motor.bat journal` | Exercícios a partir do diário |
+
+### Próximas automações (roadmap)
+
+- [x] Áudio com `edge-tts` para flashcards
+- [x] Modo revisão rápida (5 min)
+- Export Anki
+- Geração assistida de blocos a partir de temas da vida real
+- Notificação diária (e-mail / Telegram)
+
+### Monetização (Supabase)
+
+**Sem `.env.local`:** todos os 24 blocos no PC (modo portfólio).
+
+**Com Supabase configurado:**
+
+| Plano | Blocos |
+|-------|--------|
+| Gratuito | 1–3 + progresso na nuvem |
+| Premium | 24 blocos |
+
+1. [supabase.com](https://supabase.com) → novo projeto
+2. SQL Editor → rode `supabase/schema.sql`
+3. Copie `.env.example` → `.env.local` (URL + anon key)
+4. Vercel → Environment Variables → redeploy
+
+- `/auth` — entrar ou criar conta
+- `/conta` — plano e ativar Premium (código demo: `EBRL2026`)
+
+- [x] Autenticação de usuários
+- [x] Progresso na nuvem
+- [x] Planos free (3 blocos) / premium (todos)
+- [ ] Pagamento Stripe
 - [ ] Notificações de revisão
-- [ ] Planos free (3 blocos) / premium (todos)
-- [ ] Área do treinador para criar blocos customizados
+- [ ] Área do treinador
 
 ## Estrutura do projeto
 
@@ -318,6 +402,10 @@ src/
 ├── data/blocks/      # Conteúdo pedagógico por bloco
 ├── lib/              # Progresso, fala
 └── types/            # Tipos TypeScript
+
+content/              # Fonte para o motor Python
+scripts/ebrl/         # Motor de automação
+output/               # Aulas geradas (gitignored)
 ```
 
 ## Licença
