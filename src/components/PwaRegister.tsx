@@ -83,9 +83,9 @@ export function PwaRegister() {
   // iPhone nunca mostra botão automático — sempre mostrar instruções
   if (mobile && ios) {
     return (
-      <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg rounded-2xl border border-teal-200 bg-white p-4 shadow-lg">
-        <p className="text-sm font-semibold text-slate-900">📱 Instalar no iPhone</p>
-        <ol className="mt-2 text-xs text-slate-600 space-y-1 list-decimal pl-4">
+      <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg glass-panel rounded-2xl border-teal-400/30 p-4 shadow-2xl shadow-black/50">
+        <p className="text-sm font-semibold text-slate-100">📱 Instalar no iPhone</p>
+        <ol className="mt-2 text-xs text-slate-400 space-y-1 list-decimal pl-4">
           <li>Toque no botão <strong>Compartilhar</strong> (quadrado com seta)</li>
           <li>Role e toque em <strong>Adicionar à Tela de Início</strong></li>
           <li>Toque em <strong>Adicionar</strong></li>
@@ -93,7 +93,7 @@ export function PwaRegister() {
         <button
           type="button"
           onClick={dismiss}
-          className="mt-3 w-full rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white"
+          className="mt-3 w-full rounded-xl btn-cosmic px-4 py-2 text-sm font-semibold text-white"
         >
           Entendi
         </button>
@@ -104,9 +104,9 @@ export function PwaRegister() {
   // Android com prompt nativo
   if (installEvent) {
     return (
-      <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg rounded-2xl border border-teal-200 bg-white p-4 shadow-lg">
-        <p className="text-sm font-semibold text-slate-900">Instalar English by Real Life</p>
-        <p className="mt-1 text-xs text-slate-500">Ícone na tela inicial — como um app.</p>
+      <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg glass-panel rounded-2xl border-teal-400/30 p-4 shadow-2xl shadow-black/50">
+        <p className="text-sm font-semibold text-slate-100">Instalar English by Real Life</p>
+        <p className="mt-1 text-xs text-slate-400">Ícone na tela inicial — como um app.</p>
         <div className="mt-3 flex gap-2">
           <button
             type="button"
@@ -114,14 +114,14 @@ export function PwaRegister() {
               await installEvent.prompt();
               setInstallEvent(null);
             }}
-            className="flex-1 rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white"
+            className="flex-1 rounded-xl btn-cosmic px-4 py-2 text-sm font-semibold text-white"
           >
             Instalar app
           </button>
           <button
             type="button"
             onClick={dismiss}
-            className="rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-600"
+            className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-400"
           >
             Depois
           </button>
@@ -133,16 +133,16 @@ export function PwaRegister() {
   // Android sem prompt ainda — instruções manuais
   if (mobile) {
     return (
-      <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg rounded-2xl border border-teal-200 bg-white p-4 shadow-lg">
-        <p className="text-sm font-semibold text-slate-900">📱 Instalar no Android</p>
-        <p className="mt-1 text-xs text-slate-600">
+      <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-lg glass-panel rounded-2xl border-teal-400/30 p-4 shadow-2xl shadow-black/50">
+        <p className="text-sm font-semibold text-slate-100">📱 Instalar no Android</p>
+        <p className="mt-1 text-xs text-slate-400">
           Chrome → menu <strong>⋮</strong> → <strong>Instalar app</strong> ou{" "}
           <strong>Adicionar à tela inicial</strong>
         </p>
         <button
           type="button"
           onClick={dismiss}
-          className="mt-3 w-full rounded-xl bg-teal-600 px-4 py-2 text-sm font-semibold text-white"
+          className="mt-3 w-full rounded-xl btn-cosmic px-4 py-2 text-sm font-semibold text-white"
         >
           Entendi
         </button>

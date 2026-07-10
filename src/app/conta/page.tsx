@@ -17,8 +17,8 @@ export default function ContaPage() {
       <>
         <Header />
         <main className="mx-auto max-w-md px-4 py-16 text-center">
-          <p className="text-slate-600">Conta na nuvem não configurada.</p>
-          <Link href="/" className="mt-6 inline-block text-teal-600">
+          <p className="text-slate-400">Conta na nuvem não configurada.</p>
+          <Link href="/" className="mt-6 inline-block text-teal-300">
             ← Voltar
           </Link>
         </main>
@@ -30,7 +30,7 @@ export default function ContaPage() {
     return (
       <>
         <Header />
-        <main className="mx-auto max-w-md px-4 py-16 text-center text-slate-500">
+        <main className="mx-auto max-w-md px-4 py-16 text-center text-slate-400">
           Carregando...
         </main>
       </>
@@ -42,10 +42,10 @@ export default function ContaPage() {
       <>
         <Header />
         <main className="mx-auto max-w-md px-4 py-16 text-center">
-          <p className="text-slate-600">Faça login para ver sua conta.</p>
+          <p className="text-slate-400">Faça login para ver sua conta.</p>
           <Link
             href="/auth"
-            className="mt-6 inline-block rounded-xl bg-teal-600 px-6 py-3 text-sm font-semibold text-white"
+            className="mt-6 inline-block rounded-xl btn-cosmic px-6 py-3 text-sm font-semibold text-white"
           >
             Entrar →
           </Link>
@@ -80,17 +80,17 @@ export default function ContaPage() {
     <>
       <Header />
       <main className="mx-auto max-w-lg px-4 py-10">
-        <Link href="/" className="text-sm text-slate-500 hover:text-teal-600">
+        <Link href="/" className="text-sm text-slate-400 hover:text-teal-300 transition-colors">
           ← Voltar
         </Link>
 
-        <h1 className="mt-6 text-2xl font-bold text-slate-900">Minha conta</h1>
-        <p className="mt-1 text-sm text-slate-500">{user.email}</p>
+        <h1 className="mt-6 text-2xl font-bold text-slate-100">Minha conta</h1>
+        <p className="mt-1 text-sm text-slate-400">{user.email}</p>
 
-        <article className="mt-8 rounded-2xl border border-teal-200 bg-teal-50 p-6">
-          <p className="text-xs font-semibold uppercase text-teal-700">Plano atual</p>
-          <p className="mt-1 text-2xl font-bold text-slate-900">{PLAN_LABELS[plan]}</p>
-          <ul className="mt-4 space-y-2 text-sm text-slate-700">
+        <article className="mt-8 glass-panel rounded-2xl border-teal-400/25 p-6">
+          <p className="text-xs font-semibold uppercase text-teal-300">Plano atual</p>
+          <p className="mt-1 text-2xl font-bold text-slate-100">{PLAN_LABELS[plan]}</p>
+          <ul className="mt-4 space-y-2 text-sm text-slate-300">
             {PLAN_FEATURES[plan].map((item) => (
               <li key={item}>✓ {item}</li>
             ))}
@@ -98,9 +98,9 @@ export default function ContaPage() {
         </article>
 
         {plan === "free" && (
-          <section className="mt-6 rounded-2xl border border-violet-200 bg-violet-50 p-6">
-            <h2 className="font-semibold text-violet-900">Ativar Premium</h2>
-            <p className="mt-1 text-sm text-violet-700">
+          <section className="mt-6 glass-panel rounded-2xl border-violet-400/25 p-6">
+            <h2 className="font-semibold text-violet-200">Ativar Premium</h2>
+            <p className="mt-1 text-sm text-violet-300">
               Desbloqueie os 24 blocos. No portfólio, use o código promocional de demonstração.
             </p>
             <form onSubmit={redeemCode} className="mt-4 flex gap-2">
@@ -108,24 +108,24 @@ export default function ContaPage() {
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="Código promocional"
-                className="flex-1 rounded-xl border border-violet-200 px-4 py-2 text-sm"
+                className="flex-1 rounded-xl input-cosmic px-4 py-2 text-sm"
               />
               <button
                 type="submit"
                 disabled={redeeming}
-                className="rounded-xl bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700 disabled:opacity-50"
+                className="rounded-xl bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-500 disabled:opacity-50"
               >
                 Ativar
               </button>
             </form>
-            {message && <p className="mt-3 text-sm text-violet-800">{message}</p>}
+            {message && <p className="mt-3 text-sm text-violet-200">{message}</p>}
           </section>
         )}
 
         <button
           type="button"
           onClick={() => signOut()}
-          className="mt-8 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-600 hover:bg-slate-50"
+          className="mt-8 w-full rounded-xl glass-panel px-4 py-3 text-sm text-slate-400 hover:border-red-400/30 hover:text-red-300 transition-colors"
         >
           Sair da conta
         </button>

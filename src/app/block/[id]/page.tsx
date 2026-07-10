@@ -45,8 +45,8 @@ export default function BlockPage() {
       <>
         <Header />
         <main className="mx-auto max-w-3xl px-4 py-16 text-center">
-          <p className="text-slate-500">Bloco não encontrado.</p>
-          <Link href="/" className="mt-4 inline-block text-teal-600">
+          <p className="text-slate-400">Bloco não encontrado.</p>
+          <Link href="/" className="mt-4 inline-block text-teal-300">
             ← Voltar ao início
           </Link>
         </main>
@@ -60,13 +60,13 @@ export default function BlockPage() {
         <Header />
         <main className="mx-auto max-w-3xl px-4 py-16 text-center">
           <span className="text-5xl">⭐</span>
-          <h1 className="mt-4 text-2xl font-bold text-slate-900">Bloco Premium</h1>
-          <p className="mt-2 text-slate-500">
+          <h1 className="mt-4 text-2xl font-bold text-slate-100">Bloco Premium</h1>
+          <p className="mt-2 text-slate-400">
             O plano gratuito inclui os blocos 1 a 3. Ative o Premium para continuar.
           </p>
           <Link
             href="/conta"
-            className="mt-6 inline-block rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white"
+            className="mt-6 inline-block rounded-xl btn-cosmic px-6 py-3 text-sm font-semibold text-white"
           >
             Ver planos →
           </Link>
@@ -81,11 +81,11 @@ export default function BlockPage() {
         <Header />
         <main className="mx-auto max-w-3xl px-4 py-16 text-center">
           <span className="text-5xl">🔒</span>
-          <h1 className="mt-4 text-2xl font-bold text-slate-900">Bloco bloqueado</h1>
-          <p className="mt-2 text-slate-500">
+          <h1 className="mt-4 text-2xl font-bold text-slate-100">Bloco bloqueado</h1>
+          <p className="mt-2 text-slate-400">
             Complete o bloco anterior com 80% de domínio para desbloquear.
           </p>
-          <Link href="/" className="mt-6 inline-block text-teal-600">
+          <Link href="/" className="mt-6 inline-block text-teal-300">
             ← Voltar ao início
           </Link>
         </main>
@@ -106,7 +106,7 @@ export default function BlockPage() {
       <main className="mx-auto max-w-3xl px-4 py-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-teal-600 mb-6"
+          className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-teal-300 mb-6 transition-colors"
         >
           ← Voltar aos blocos
         </Link>

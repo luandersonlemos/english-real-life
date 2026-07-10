@@ -34,10 +34,10 @@ export function LessonProgress({ currentStep }: LessonProgressProps) {
               <div
                 className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
                   isActive
-                    ? "bg-teal-600 text-white"
+                    ? "btn-cosmic text-white"
                     : isDone
-                      ? "bg-teal-100 text-teal-700"
-                      : "bg-slate-100 text-slate-400"
+                      ? "bg-teal-500/20 text-teal-300 border border-teal-400/30"
+                      : "bg-white/5 text-slate-500 border border-white/8"
                 }`}
               >
                 <span className="w-4 text-center">
@@ -48,7 +48,7 @@ export function LessonProgress({ currentStep }: LessonProgressProps) {
               {index < steps.length - 1 && (
                 <div
                   className={`mx-1 h-0.5 w-3 sm:w-6 ${
-                    isDone ? "bg-teal-300" : "bg-slate-200"
+                    isDone ? "bg-teal-400/50" : "bg-white/10"
                   }`}
                 />
               )}

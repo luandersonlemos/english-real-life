@@ -57,15 +57,15 @@ export function QuickReviewFlow() {
   if (phase === "intro") {
     return (
       <section className="space-y-6">
-        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
-          <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">
+        <div className="glass-panel rounded-2xl border-amber-400/30 p-6">
+          <p className="text-xs font-semibold uppercase tracking-wide text-amber-300">
             Modo revisão rápida
           </p>
-          <h1 className="mt-2 text-2xl font-bold text-slate-900">5 minutos de foco</h1>
-          <p className="mt-2 text-slate-600">
+          <h1 className="mt-2 text-2xl font-bold text-slate-100">5 minutos de foco</h1>
+          <p className="mt-2 text-slate-400">
             Flashcards dos blocos dominados + bloco atual, depois exercícios de fala.
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-slate-700">
+          <ul className="mt-4 space-y-2 text-sm text-slate-300">
             <li>• {session.cards.length} flashcards</li>
             <li>• {session.speakingPrompts.length} frases para falar</li>
             <li>• Áudio automático (edge-tts no PC)</li>
@@ -78,7 +78,7 @@ export function QuickReviewFlow() {
             setRunning(true);
             setPhase("cards");
           }}
-          className="w-full rounded-xl bg-amber-500 px-6 py-4 text-sm font-semibold text-white hover:bg-amber-600"
+          className="w-full rounded-xl bg-amber-500 px-6 py-4 text-sm font-semibold text-white hover:bg-amber-400 shadow-lg shadow-amber-500/25 transition-all"
         >
           Começar revisão →
         </button>
@@ -89,11 +89,11 @@ export function QuickReviewFlow() {
   if (phase === "cards" && card) {
     return (
       <section className="space-y-6">
-        <div className="flex items-center justify-between text-sm text-slate-500">
+        <div className="flex items-center justify-between text-sm text-slate-400">
           <span>
             Flashcard {index + 1}/{session.cards.length}
           </span>
-          <span className="font-mono text-amber-700">
+          <span className="font-mono text-amber-300">
             {minutes}:{seconds}
           </span>
         </div>
@@ -101,22 +101,22 @@ export function QuickReviewFlow() {
         <button
           type="button"
           onClick={() => setFlipped(!flipped)}
-          className="w-full rounded-2xl border border-slate-200 bg-white p-8 text-center hover:border-amber-300 transition-colors"
+          className="w-full glass-panel glass-panel-hover rounded-2xl p-8 text-center border-amber-400/20 transition-colors"
         >
-          <p className="text-xs text-slate-400">{card.blockTitle}</p>
+          <p className="text-xs text-slate-500">{card.blockTitle}</p>
           <span className="text-5xl block my-4">{card.emoji}</span>
           {flipped ? (
             <>
-              <p className="text-2xl font-bold text-slate-900">{card.english}</p>
-              <p className="text-slate-500 mt-1">{card.portuguese}</p>
+              <p className="text-2xl font-bold text-slate-100">{card.english}</p>
+              <p className="text-slate-400 mt-1">{card.portuguese}</p>
               {card.example && (
-                <p className="mt-3 text-sm text-amber-800 bg-amber-50 rounded-lg px-3 py-2">
+                <p className="mt-3 text-sm text-amber-200 bg-amber-500/15 border border-amber-400/25 rounded-lg px-3 py-2">
                   {card.example}
                 </p>
               )}
             </>
           ) : (
-            <p className="text-sm text-amber-700">Toque para revelar</p>
+            <p className="text-sm text-amber-300">Toque para revelar</p>
           )}
         </button>
 
@@ -124,7 +124,7 @@ export function QuickReviewFlow() {
           <button
             type="button"
             onClick={() => void speak(card.english)}
-            className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-sm hover:bg-amber-50"
+            className="flex-1 rounded-xl glass-panel px-4 py-3 text-sm text-slate-300 hover:border-amber-400/30"
           >
             🔊 Ouvir de novo
           </button>
@@ -141,7 +141,7 @@ export function QuickReviewFlow() {
               setIndex(index + 1);
               setFlipped(false);
             }}
-            className="flex-1 rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white hover:bg-amber-600"
+            className="flex-1 rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white hover:bg-amber-400"
           >
             Próximo →
           </button>
@@ -159,18 +159,18 @@ export function QuickReviewFlow() {
 
     return (
       <section className="space-y-6">
-        <div className="flex items-center justify-between text-sm text-slate-500">
+        <div className="flex items-center justify-between text-sm text-slate-400">
           <span>
             Fala {index + 1}/{session.speakingPrompts.length}
           </span>
-          <span className="font-mono text-amber-700">
+          <span className="font-mono text-amber-300">
             {minutes}:{seconds}
           </span>
         </div>
 
-        <article className="rounded-2xl border border-violet-200 bg-violet-50 p-6">
-          <p className="text-lg font-medium text-slate-900">{prompt}</p>
-          <p className="mt-2 text-sm text-violet-700">
+        <article className="glass-panel rounded-2xl border-violet-400/25 p-6">
+          <p className="text-lg font-medium text-slate-100">{prompt}</p>
+          <p className="mt-2 text-sm text-violet-300">
             Fale em voz alta antes de avançar. Use o botão para ouvir o modelo.
           </p>
         </article>
@@ -179,10 +179,13 @@ export function QuickReviewFlow() {
           <button
             type="button"
             onClick={() => {
-              const english = prompt.replace(/^[^:]+:\s*/, "").replace(/^Diga em voz alta:\s*/, "").replace(/^Repita:\s*/, "");
+              const english = prompt
+                .replace(/^[^:]+:\s*/, "")
+                .replace(/^Diga em voz alta:\s*/, "")
+                .replace(/^Repita:\s*/, "");
               void speak(english);
             }}
-            className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-sm hover:bg-violet-50"
+            className="flex-1 rounded-xl glass-panel px-4 py-3 text-sm text-slate-300 hover:border-violet-400/30"
           >
             🔊 Ouvir modelo
           </button>
@@ -197,7 +200,7 @@ export function QuickReviewFlow() {
               }
               setIndex(index + 1);
             }}
-            className="flex-1 rounded-xl bg-violet-600 px-4 py-3 text-sm font-semibold text-white hover:bg-violet-700"
+            className="flex-1 rounded-xl bg-violet-600 px-4 py-3 text-sm font-semibold text-white hover:bg-violet-500 shadow-lg shadow-violet-500/25"
           >
             Falei! Próximo →
           </button>
@@ -209,13 +212,13 @@ export function QuickReviewFlow() {
   return (
     <section className="space-y-6 text-center">
       <span className="text-5xl">🎉</span>
-      <h1 className="text-2xl font-bold text-slate-900">Revisão concluída!</h1>
-      <p className="text-slate-600">
+      <h1 className="text-2xl font-bold text-slate-100">Revisão concluída!</h1>
+      <p className="text-slate-400">
         Você revisou {session.cards.length} palavras e praticou fala. Volte amanhã!
       </p>
       <Link
         href="/"
-        className="inline-block rounded-xl bg-teal-600 px-6 py-3 text-sm font-semibold text-white hover:bg-teal-700"
+        className="inline-block rounded-xl btn-cosmic px-6 py-3 text-sm font-semibold text-white"
       >
         ← Voltar ao início
       </Link>

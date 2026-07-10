@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --cosmic-teal: #2dd4bf;
+  --cosmic-violet: #a78bfa;
+  --cosmic-pink: #f472b6;
+  --glass-bg: rgba(15, 23, 42, 0.62);
+  --glass-border: rgba(148, 163, 184, 0.2);
 }
 
 @theme inline {
@@ -15,4 +20,212 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Fundo galáxia — camadas profundas */
+.galaxy-bg {
+  background:
+    radial-gradient(ellipse 90% 60% at 10% 15%, rgba(139, 92, 246, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(236, 72, 153, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 55% 95%, rgba(45, 212, 191, 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 75% 55%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 25% at 25% 70%, rgba(251, 191, 36, 0.08) 0%, transparent 50%),
+    linear-gradient(170deg, #000208 0%, #0c1222 25%, #1e1b4b 55%, #0f172a 80%, #020617 100%);
+}
+
+.galaxy-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.65;
+  animation: nebula-drift 22s ease-in-out infinite alternate;
+}
+
+.galaxy-nebula-1 {
+  width: 520px;
+  height: 520px;
+  top: -12%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.65), rgba(99, 102, 241, 0.2) 50%, transparent 72%);
+}
+
+.galaxy-nebula-2 {
+  width: 440px;
+  height: 440px;
+  top: 5%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.55), rgba(236, 72, 153, 0.15) 50%, transparent 72%);
+  animation-delay: -7s;
+  animation-duration: 26s;
+}
+
+.galaxy-nebula-3 {
+  width: 580px;
+  height: 580px;
+  bottom: -18%;
+  left: 25%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.45), rgba(20, 184, 166, 0.1) 50%, transparent 72%);
+  animation-delay: -14s;
+  animation-duration: 20s;
+}
+
+.galaxy-nebula-4 {
+  width: 300px;
+  height: 300px;
+  top: 45%;
+  left: 55%;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.4), transparent 70%);
+  filter: blur(60px);
+  opacity: 0.5;
+  animation-delay: -10s;
+  animation-duration: 30s;
+}
+
+@keyframes nebula-drift {
+  from { transform: translate(0, 0) scale(1) rotate(0deg); }
+  to { transform: translate(30px, -20px) scale(1.1) rotate(3deg); }
+}
+
+/* Estrelas — três camadas */
+.stars {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+}
+
+.stars-sm {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 80px 120px, rgba(255,255,255,0.75), transparent),
+    radial-gradient(1px 1px at 150px 60px, #fff, transparent),
+    radial-gradient(1px 1px at 220px 180px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 300px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 400px 150px, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1px 1px at 50px 200px, rgba(200,220,255,0.7), transparent);
+  background-size: 420px 220px;
+  opacity: 0.55;
+  animation: twinkle-sm 5s ease-in-out infinite alternate;
+}
+
+.stars-md {
+  background-image:
+    radial-gradient(1.5px 1.5px at 50px 80px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 180px 20px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 320px 100px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 100px 200px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 250px 160px, rgba(167, 139, 250, 0.9), transparent);
+  background-size: 380px 260px;
+  opacity: 0.8;
+  animation: twinkle-md 4s ease-in-out infinite alternate;
+  animation-delay: -2s;
+}
+
+.stars-lg {
+  background-image:
+    radial-gradient(2.5px 2.5px at 120px 50px, rgba(255,255,255,0.95), transparent),
+    radial-gradient(3px 3px at 280px 180px, rgba(45, 212, 191, 0.85), transparent),
+    radial-gradient(2px 2px at 400px 70px, rgba(244, 114, 182, 0.8), transparent);
+  background-size: 500px 300px;
+  opacity: 0.7;
+  animation: twinkle-lg 6s ease-in-out infinite alternate;
+  animation-delay: -4s;
+}
+
+@keyframes twinkle-sm {
+  from { opacity: 0.4; }
+  to { opacity: 0.75; }
+}
+
+@keyframes twinkle-md {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+
+@keyframes twinkle-lg {
+  from { opacity: 0.5; }
+  to { opacity: 0.95; }
+}
+
+/* Poeira cósmica */
+.cosmic-dust {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+/* Estrela cadente */
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.9), transparent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: shoot 8s ease-in infinite;
+  transform: rotate(-35deg);
+}
+
+.shooting-star-1 { top: 12%; left: 20%; animation-delay: 0s; }
+.shooting-star-2 { top: 35%; left: 70%; animation-delay: 3.5s; width: 80px; }
+.shooting-star-3 { top: 60%; left: 40%; animation-delay: 6s; width: 100px; }
+
+@keyframes shoot {
+  0%, 85%, 100% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  88% { opacity: 1; }
+  95% { opacity: 0; transform: rotate(-35deg) translateX(280px); }
+}
+
+/* Vidro cósmico */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(45, 212, 191, 0.4);
+  box-shadow:
+    0 8px 40px rgba(45, 212, 191, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.text-glow {
+  text-shadow:
+    0 0 40px rgba(167, 139, 250, 0.5),
+    0 0 80px rgba(45, 212, 191, 0.2);
+}
+
+.btn-cosmic {
+  background: linear-gradient(135deg, #14b8a6 0%, #6366f1 45%, #a855f7 100%);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.45);
+}
+
+.btn-cosmic:hover {
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.55);
+  filter: brightness(1.1);
+}
+
+.input-cosmic {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #e2e8f0;
+}
+
+.input-cosmic:focus {
+  outline: none;
+  border-color: rgba(45, 212, 191, 0.5);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15);
+}
+
+.alert-cosmic {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fcd34d;
 }

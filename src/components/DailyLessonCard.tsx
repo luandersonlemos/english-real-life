@@ -46,16 +46,16 @@ export function DailyLessonCard() {
 
   return (
     <section className="mx-auto max-w-5xl px-4 pb-8">
-      <article className="rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 to-white p-6 shadow-sm">
+      <article className="glass-panel rounded-2xl p-6 border-violet-400/25">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-violet-600">
+            <p className="text-xs font-semibold uppercase tracking-wide text-violet-300">
               Motor Python — aula do dia
             </p>
-            <h2 className="mt-1 text-lg font-semibold text-slate-900">
+            <h2 className="mt-1 text-lg font-semibold text-slate-100">
               Plano de hoje ({plan.total_minutes} min)
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-400 mt-1">
               Atualiza automaticamente quando você estuda no app.
             </p>
           </div>
@@ -64,12 +64,15 @@ export function DailyLessonCard() {
 
         <ol className="mt-4 space-y-3">
           {plan.tasks.map((task, index) => (
-            <li key={`${task.title}-${index}`} className="rounded-xl bg-white/80 border border-violet-100 px-4 py-3">
-              <p className="font-medium text-slate-900">
+            <li
+              key={`${task.title}-${index}`}
+              className="rounded-xl glass-panel border-violet-400/15 px-4 py-3"
+            >
+              <p className="font-medium text-slate-100">
                 {index + 1}. {task.title}{" "}
-                <span className="text-violet-600 text-sm">({task.minutes} min)</span>
+                <span className="text-violet-300 text-sm">({task.minutes} min)</span>
               </p>
-              <p className="text-sm text-slate-600 mt-1">{task.detail}</p>
+              <p className="text-sm text-slate-400 mt-1">{task.detail}</p>
             </li>
           ))}
         </ol>
@@ -79,7 +82,7 @@ export function DailyLessonCard() {
             {plan.flashcards.slice(0, 6).map((card) => (
               <span
                 key={card.english}
-                className="rounded-full bg-white border border-slate-200 px-3 py-1 text-sm text-slate-700"
+                className="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-sm text-slate-300"
               >
                 {card.emoji} {card.english}
               </span>

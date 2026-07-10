@@ -24,14 +24,14 @@ export function WordCard({ word, index }: WordCardProps) {
       aria-label={`Card da palavra ${word.english}`}
     >
       <div
-        className={`rounded-2xl border p-5 transition-all duration-300 ${
+        className={`rounded-2xl p-5 transition-all duration-300 ${
           flipped
-            ? "border-teal-300 bg-teal-50"
-            : "border-slate-200 bg-white hover:border-teal-200 hover:shadow-md"
+            ? "glass-panel border-teal-400/40 shadow-lg shadow-teal-500/10"
+            : "glass-panel glass-panel-hover"
         }`}
       >
         <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-medium text-slate-400">
+          <span className="text-xs font-medium text-slate-500">
             Palavra {index + 1}/15
           </span>
           <button
@@ -40,7 +40,7 @@ export function WordCard({ word, index }: WordCardProps) {
               e.stopPropagation();
               void speak(word.english);
             }}
-            className="rounded-full bg-slate-100 px-3 py-2 text-xs hover:bg-teal-100 transition-colors"
+            className="rounded-full bg-white/10 border border-white/10 px-3 py-2 text-xs text-teal-300 hover:bg-teal-500/20 transition-colors"
             aria-label="Ouvir de novo"
             title="Ouvir de novo"
           >
@@ -51,15 +51,15 @@ export function WordCard({ word, index }: WordCardProps) {
         {!flipped ? (
           <div className="text-center py-2">
             <span className="text-5xl block mb-3">{word.emoji}</span>
-            <p className="text-xs text-slate-400 italic">{word.imageHint}</p>
-            <p className="mt-3 text-xs text-teal-600">Toque para revelar</p>
+            <p className="text-xs text-slate-500 italic">{word.imageHint}</p>
+            <p className="mt-3 text-xs text-teal-400">Toque para revelar</p>
           </div>
         ) : (
           <div className="text-center py-2">
-            <p className="text-2xl font-bold text-slate-900">{word.english}</p>
-            <p className="text-slate-500 mt-1">{word.portuguese}</p>
+            <p className="text-2xl font-bold text-slate-100">{word.english}</p>
+            <p className="text-slate-400 mt-1">{word.portuguese}</p>
             {word.example && (
-              <p className="mt-3 text-sm text-teal-700 bg-teal-100/50 rounded-lg px-3 py-2">
+              <p className="mt-3 text-sm text-teal-200 bg-teal-500/15 border border-teal-400/25 rounded-lg px-3 py-2">
                 {word.example}
               </p>
             )}

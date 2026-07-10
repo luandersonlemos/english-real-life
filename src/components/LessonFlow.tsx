@@ -59,7 +59,7 @@ export function LessonFlow({
     <div>
       {step === "intro" && (
         <section className="space-y-6">
-          <div className="rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 p-8 text-white">
+          <div className="rounded-2xl bg-gradient-to-br from-teal-600/90 via-indigo-600/85 to-violet-700/90 border border-white/15 p-8 text-white shadow-xl shadow-violet-600/25">
             <span className="text-5xl">{block.emoji}</span>
             <h2 className="mt-4 text-3xl font-bold">
               Bloco {block.number}: {block.title}
@@ -69,9 +69,9 @@ export function LessonFlow({
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-slate-200 p-5 bg-white">
-              <h3 className="font-semibold text-slate-900 mb-2">O que você vai aprender</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
+            <div className="rounded-xl glass-panel p-5">
+              <h3 className="font-semibold text-slate-100 mb-2">O que você vai aprender</h3>
+              <ul className="space-y-2 text-sm text-slate-400">
                 <li>✓ 15 palavras úteis do seu dia a dia</li>
                 <li>
                   ✓ Verbo <strong>{block.verb.english}</strong> no{" "}
@@ -94,9 +94,9 @@ export function LessonFlow({
                 )}
               </ul>
             </div>
-            <div className="rounded-xl border border-slate-200 p-5 bg-white">
-              <h3 className="font-semibold text-slate-900 mb-2">Método English by Real Life</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
+            <div className="rounded-xl glass-panel p-5">
+              <h3 className="font-semibold text-slate-100 mb-2">Método English by Real Life</h3>
+              <ul className="space-y-2 text-sm text-slate-400">
                 <li>👁️ Aprenda com imagens e associação visual</li>
                 <li>🗣️ Fale desde a primeira aula</li>
                 <li>🔄 Revisão espaçada automática</li>
@@ -112,7 +112,7 @@ export function LessonFlow({
       {step === "words" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">15 Palavras Úteis</h2>
+            <h2 className="text-2xl font-bold text-slate-100">15 Palavras Úteis</h2>
             <p className="text-slate-500 mt-1">
               Toque no card para revelar. Ouça a pronúncia. Associe o emoji à palavra.
             </p>
@@ -125,7 +125,7 @@ export function LessonFlow({
               type="button"
               disabled={wordIndex === 0}
               onClick={() => setWordIndex((i) => i - 1)}
-              className="rounded-xl border border-slate-200 px-4 py-2 text-sm disabled:opacity-40 hover:bg-slate-50"
+              className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors"
             >
               ← Anterior
             </button>
@@ -136,7 +136,7 @@ export function LessonFlow({
               type="button"
               disabled={wordIndex === block.words.length - 1}
               onClick={() => setWordIndex((i) => i + 1)}
-              className="rounded-xl border border-slate-200 px-4 py-2 text-sm disabled:opacity-40 hover:bg-slate-50"
+              className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors"
             >
               Próxima →
             </button>
@@ -151,7 +151,7 @@ export function LessonFlow({
       {step === "verb" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">
+            <h2 className="text-2xl font-bold text-slate-100">
               Verbo do bloco: {block.verb.english.toUpperCase()}
             </h2>
             <p className="text-slate-500 mt-1">
@@ -160,14 +160,14 @@ export function LessonFlow({
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
+          <div className="rounded-2xl glass-panel p-8 text-center">
             <span className="text-5xl">{block.verb.emoji}</span>
-            <p className="mt-4 text-3xl font-bold text-slate-900">{block.verb.english}</p>
+            <p className="mt-4 text-3xl font-bold text-slate-100">{block.verb.english}</p>
             <p className="text-slate-500">{block.verb.portuguese}</p>
             <button
               type="button"
               onClick={() => void speak(block.verb.english)}
-              className="mt-4 rounded-full bg-teal-100 px-4 py-2 text-sm text-teal-700 hover:bg-teal-200"
+              className="mt-4 rounded-full bg-teal-500/20 border border-teal-400/30 px-4 py-2 text-sm text-teal-300 hover:bg-teal-500/30"
             >
               🔊 Ouvir
             </button>
@@ -177,11 +177,11 @@ export function LessonFlow({
             {block.pronouns.map((p) => (
               <div
                 key={p}
-                className="rounded-xl border border-slate-200 p-4 flex items-center justify-between bg-white"
+                className="rounded-xl glass-panel p-4 flex items-center justify-between"
               >
                 <div>
-                  <p className="font-bold text-slate-900">{p}</p>
-                  <p className="text-teal-600">
+                  <p className="font-bold text-slate-100">{p}</p>
+                  <p className="text-teal-300">
                     {p} {block.verb.conjugations[p]}
                   </p>
                 </div>
@@ -197,7 +197,7 @@ export function LessonFlow({
           </div>
 
           {block.pronouns.includes("He") && block.tense === "present" && (
-            <div className="rounded-xl border border-violet-200 bg-violet-50 p-4 text-sm text-violet-800">
+            <div className="rounded-xl border border-violet-400/30 bg-violet-500/10 p-4 text-sm text-violet-200">
               <strong>Regra nova:</strong> I / You / We / They →{" "}
               <em>{block.verb.conjugations.I ?? block.verb.english}</em>
               <br />
@@ -207,14 +207,14 @@ export function LessonFlow({
           )}
 
           {block.pronouns.includes("He") && block.tense === "past" && (
-            <div className="rounded-xl border border-violet-200 bg-violet-50 p-4 text-sm text-violet-800">
+            <div className="rounded-xl border border-violet-400/30 bg-violet-500/10 p-4 text-sm text-violet-200">
               <strong>Regra do passado:</strong> He / She / It usam a mesma forma —{" "}
               <em>He {block.verb.conjugations.He ?? block.verb.english}</em>,{" "}
               <em>She {block.verb.conjugations.She ?? block.verb.english}</em> — sem -s!
             </div>
           )}
 
-          <p className="text-sm text-slate-500 bg-amber-50 border border-amber-100 rounded-xl p-4">
+          <p className="text-sm text-amber-200 glass-panel border-amber-400/25 rounded-xl p-4">
             💡 <strong>Dica:</strong>{" "}
             {block.pronouns.includes("He") && block.tense === "present"
               ? `Com He, She e It o verbo ganha -s: want → wants. No passado todos ficam iguais (wanted).`
@@ -230,7 +230,7 @@ export function LessonFlow({
       {step === "connector" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">
+            <h2 className="text-2xl font-bold text-slate-100">
               Conector: {block.connector.english.toUpperCase()}
             </h2>
             <p className="text-slate-500 mt-1">
@@ -239,9 +239,9 @@ export function LessonFlow({
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
+          <div className="rounded-2xl glass-panel p-8 text-center">
             <span className="text-5xl">{block.connector.emoji}</span>
-            <p className="mt-4 text-3xl font-bold text-slate-900">{block.connector.english}</p>
+            <p className="mt-4 text-3xl font-bold text-slate-100">{block.connector.english}</p>
             <p className="text-slate-500">{block.connector.portuguese}</p>
           </div>
 
@@ -254,9 +254,9 @@ export function LessonFlow({
               .map((sentence) => (
                 <div
                   key={sentence.id}
-                  className="rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between"
+                  className="rounded-xl glass-panel p-4 flex items-center justify-between"
                 >
-                  <p className="text-sm text-slate-700">{sentence.english}</p>
+                  <p className="text-sm text-slate-300">{sentence.english}</p>
                   <button
                     type="button"
                     onClick={() => void speak(sentence.english)}
@@ -275,7 +275,7 @@ export function LessonFlow({
       {step === "sentences" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Construção de Frases</h2>
+            <h2 className="text-2xl font-bold text-slate-100">Construção de Frases</h2>
             <p className="text-slate-500 mt-1">
               Leia em voz alta. Pense na situação. Repita até fluir naturalmente.
             </p>
@@ -285,14 +285,14 @@ export function LessonFlow({
             {block.sentences.map((sentence) => (
               <div
                 key={sentence.id}
-                className="rounded-xl border border-slate-200 bg-white p-5"
+                className="rounded-xl glass-panel p-5"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <span className="text-xs font-medium text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-medium text-teal-300 bg-teal-500/15 border border-teal-400/25 px-2 py-0.5 rounded-full">
                       {sentence.pronoun} · {sentence.situation}
                     </span>
-                    <p className="mt-2 text-xl font-semibold text-slate-900">
+                    <p className="mt-2 text-xl font-semibold text-slate-100">
                       {sentence.english}
                     </p>
                     <p className="text-slate-500 text-sm mt-1">{sentence.portuguese}</p>
@@ -300,7 +300,7 @@ export function LessonFlow({
                   <button
                     type="button"
                     onClick={() => void speak(sentence.english)}
-                    className="shrink-0 rounded-full bg-slate-100 p-3 hover:bg-teal-100 transition-colors"
+                    className="shrink-0 rounded-full bg-white/10 border border-white/10 p-3 hover:bg-teal-500/20 transition-colors"
                   >
                     🔊
                   </button>
@@ -316,17 +316,17 @@ export function LessonFlow({
       {step === "situations" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Situações Reais</h2>
+            <h2 className="text-2xl font-bold text-slate-100">Situações Reais</h2>
             <p className="text-slate-500 mt-1">
               Encene cada diálogo. Imagine que está vivendo a situação.
             </p>
           </div>
 
           {block.situations.map((sit) => (
-            <div key={sit.id} className="rounded-2xl border border-slate-200 bg-white overflow-hidden">
-              <div className="bg-gradient-to-r from-slate-50 to-teal-50 px-6 py-4 border-b border-slate-100">
+            <div key={sit.id} className="rounded-2xl glass-panel overflow-hidden">
+              <div className="bg-gradient-to-r from-violet-500/15 to-teal-500/15 px-6 py-4 border-b border-white/10">
                 <span className="text-3xl">{sit.emoji}</span>
-                <h3 className="font-semibold text-slate-900 mt-2">{sit.title}</h3>
+                <h3 className="font-semibold text-slate-100 mt-2">{sit.title}</h3>
                 <p className="text-sm text-slate-500">{sit.description}</p>
               </div>
               <div className="p-6 space-y-4">
@@ -336,7 +336,7 @@ export function LessonFlow({
                       {line.speaker}
                     </div>
                     <div className="flex-1">
-                      <p className="font-medium text-slate-900">{line.text}</p>
+                      <p className="font-medium text-slate-100">{line.text}</p>
                       <p className="text-sm text-slate-400">{line.translation}</p>
                     </div>
                     <button
@@ -359,7 +359,7 @@ export function LessonFlow({
       {step === "speaking" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Exercício de Fala</h2>
+            <h2 className="text-2xl font-bold text-slate-100">Exercício de Fala</h2>
             <p className="text-slate-500 mt-1">
               Fale cada frase em voz alta. Marque quando conseguir pronunciar com confiança.
             </p>
@@ -371,12 +371,12 @@ export function LessonFlow({
             ))}
           </div>
 
-          <div className="rounded-xl bg-violet-50 border border-violet-100 p-5">
-            <h3 className="font-semibold text-violet-900">Desafio livre</h3>
-            <p className="text-sm text-violet-700 mt-1">
+          <div className="rounded-xl border border-violet-400/25 bg-violet-500/10 p-5">
+            <h3 className="font-semibold text-violet-200">Desafio livre</h3>
+            <p className="text-sm text-violet-300 mt-1">
               Crie sua própria frase sobre o que você quer agora. Exemplo:
             </p>
-            <p className="mt-2 font-medium text-violet-900">
+            <p className="mt-2 font-medium text-violet-100">
               &quot;I want coffee and breakfast now.&quot;
             </p>
             <button
@@ -387,7 +387,7 @@ export function LessonFlow({
               ✓ Falei minha frase!
             </button>
             {spokenCount > 0 && (
-              <p className="mt-2 text-sm text-violet-600">
+              <p className="mt-2 text-sm text-violet-300">
                 Ótimo! Você criou {spokenCount} frase(s) própria(s).
               </p>
             )}
@@ -400,7 +400,7 @@ export function LessonFlow({
       {step === "review-plan" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Plano de Revisão</h2>
+            <h2 className="text-2xl font-bold text-slate-100">Plano de Revisão</h2>
             <p className="text-slate-500 mt-1">
               Repetição espaçada — revise nestes dias antes do teste de domínio.
             </p>
@@ -410,17 +410,17 @@ export function LessonFlow({
             {block.reviewPlan.map((day) => (
               <div
                 key={day.day}
-                className="rounded-xl border border-slate-200 bg-white p-5"
+                className="rounded-xl glass-panel p-5"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-100 text-teal-700 font-bold text-sm">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-500/20 text-teal-300 border border-teal-400/30 font-bold text-sm">
                     D{day.day}
                   </span>
-                  <h3 className="font-semibold text-slate-900">{day.label}</h3>
+                  <h3 className="font-semibold text-slate-100">{day.label}</h3>
                 </div>
                 <ul className="space-y-2">
                   {day.activities.map((activity, i) => (
-                    <li key={i} className="flex gap-2 text-sm text-slate-600">
+                    <li key={i} className="flex gap-2 text-sm text-slate-400">
                       <span className="text-teal-500">•</span>
                       {activity}
                     </li>
@@ -430,8 +430,8 @@ export function LessonFlow({
             ))}
           </div>
 
-          <div className="rounded-xl bg-amber-50 border border-amber-200 p-5">
-            <p className="text-sm text-amber-800">
+          <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-5">
+            <p className="text-sm text-amber-200">
               <strong>Importante:</strong> Só avance para o próximo bloco quando demonstrar
               domínio de pelo menos {block.masteryThreshold}% no teste final.
             </p>
@@ -473,7 +473,7 @@ function NavButtons({
         <button
           type="button"
           onClick={onPrev}
-          className="rounded-xl border border-slate-200 px-6 py-3 text-sm font-medium hover:bg-slate-50"
+          className="rounded-xl glass-panel px-6 py-3 text-sm font-medium text-slate-300 hover:border-teal-400/35 transition-colors"
         >
           ← Voltar
         </button>
@@ -481,7 +481,7 @@ function NavButtons({
       <button
         type="button"
         onClick={onNext}
-        className="flex-1 rounded-xl bg-teal-600 px-6 py-3 text-sm font-medium text-white hover:bg-teal-700 transition-colors"
+        className="flex-1 rounded-xl btn-cosmic px-6 py-3 text-sm font-medium text-white transition-all"
       >
         {nextLabel} →
       </button>
@@ -501,13 +501,13 @@ function ExampleSentence({
   full?: boolean;
 }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between">
+    <div className="rounded-xl glass-panel p-4 flex items-center justify-between">
       <div className="flex items-center gap-2 flex-wrap">
         {parts.map((part, i) => (
           <span key={i} className="flex items-center gap-1">
             <span>{emojis[i]}</span>
             <span
-              className={`text-sm ${part === "and" ? "font-bold text-teal-600" : "text-slate-700"}`}
+              className={`text-sm ${part === "and" ? "font-bold text-teal-300" : "text-slate-300"}`}
             >
               {part}
             </span>
@@ -531,15 +531,15 @@ function SpeakingLine({ sentence }: { sentence: string }) {
   return (
     <div
       className={`rounded-xl border p-4 flex items-center justify-between transition-colors ${
-        done ? "border-emerald-300 bg-emerald-50" : "border-slate-200 bg-white"
+        done ? "border-emerald-400/40 bg-emerald-500/15" : "glass-panel"
       }`}
     >
-      <p className="font-medium text-slate-900">{sentence}</p>
+      <p className="font-medium text-slate-100">{sentence}</p>
       <div className="flex gap-2">
         <button
           type="button"
           onClick={() => void speak(sentence)}
-          className="rounded-lg bg-slate-100 px-3 py-1.5 text-sm hover:bg-teal-100"
+          className="rounded-lg bg-white/10 border border-white/10 px-3 py-1.5 text-sm text-slate-300 hover:bg-teal-500/20"
         >
           🔊 Ouvir
         </button>
@@ -549,7 +549,7 @@ function SpeakingLine({ sentence }: { sentence: string }) {
           className={`rounded-lg px-3 py-1.5 text-sm ${
             done
               ? "bg-emerald-600 text-white"
-              : "bg-slate-100 hover:bg-emerald-100"
+              : "bg-white/10 border border-white/10 hover:bg-emerald-500/20 text-slate-300"
           }`}
         >
           {done ? "✓ Feito" : "Falei!"}
@@ -590,7 +590,7 @@ function MasteryQuiz({
   return (
     <section className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-slate-900">Teste de Domínio</h2>
+        <h2 className="text-2xl font-bold text-slate-100">Teste de Domínio</h2>
         <p className="text-slate-500 mt-1">
           Precisa de {block.masteryThreshold}% para desbloquear o próximo bloco.
         </p>
@@ -598,21 +598,21 @@ function MasteryQuiz({
 
       <div className="space-y-6">
         {block.masteryQuiz.map((q, index) => (
-          <div key={q.id} className="rounded-xl border border-slate-200 bg-white p-5">
-            <p className="font-medium text-slate-900 mb-3">
+          <div key={q.id} className="rounded-xl glass-panel p-5">
+            <p className="font-medium text-slate-100 mb-3">
               {index + 1}. {q.prompt}
             </p>
             <div className="grid grid-cols-2 gap-2">
               {q.options.map((option, i) => {
                 const selected = answers[q.id] === i;
                 const isCorrect = i === q.correctIndex;
-                let style = "border-slate-200 hover:border-teal-300";
+                let style = "border-white/15 bg-white/5 hover:border-teal-400/40 text-slate-300";
 
                 if (submitted) {
-                  if (isCorrect) style = "border-emerald-400 bg-emerald-50";
-                  else if (selected) style = "border-red-300 bg-red-50";
+                  if (isCorrect) style = "border-emerald-400/50 bg-emerald-500/15 text-emerald-200";
+                  else if (selected) style = "border-red-400/50 bg-red-500/15 text-red-200";
                 } else if (selected) {
-                  style = "border-teal-400 bg-teal-50";
+                  style = "border-teal-400/50 bg-teal-500/15 text-teal-200";
                 }
 
                 return (
@@ -636,13 +636,13 @@ function MasteryQuiz({
         <div
           className={`rounded-2xl p-6 text-center ${
             passed
-              ? "bg-emerald-50 border border-emerald-200"
-              : "bg-red-50 border border-red-200"
+              ? "bg-emerald-500/15 border border-emerald-400/35"
+              : "bg-red-500/15 border border-red-400/35"
           }`}
         >
           <p className="text-4xl mb-2">{passed ? "🎉" : "📚"}</p>
-          <p className="text-2xl font-bold text-slate-900">{score}%</p>
-          <p className="mt-2 text-slate-600">
+          <p className="text-2xl font-bold text-slate-100">{score}%</p>
+          <p className="mt-2 text-slate-400">
             {passed
               ? "Parabéns! Você dominou este bloco. O próximo será liberado."
               : `Continue revisando. Você precisa de ${block.masteryThreshold}%.`}
@@ -654,7 +654,7 @@ function MasteryQuiz({
         <button
           type="button"
           onClick={onPrev}
-          className="rounded-xl border border-slate-200 px-6 py-3 text-sm font-medium hover:bg-slate-50"
+          className="rounded-xl glass-panel px-6 py-3 text-sm font-medium text-slate-300 hover:border-teal-400/35 transition-colors"
         >
           ← Voltar
         </button>
@@ -663,7 +663,7 @@ function MasteryQuiz({
             type="button"
             disabled={!allAnswered}
             onClick={handleSubmit}
-            className="flex-1 rounded-xl bg-teal-600 px-6 py-3 text-sm font-medium text-white hover:bg-teal-700 disabled:opacity-40"
+            className="flex-1 rounded-xl btn-cosmic px-6 py-3 text-sm font-medium text-white disabled:opacity-40"
           >
             Enviar respostas
           </button>
