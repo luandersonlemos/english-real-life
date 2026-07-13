@@ -103,7 +103,7 @@ export default function BlockPage() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-3xl px-4 py-8">
+      <main className="mx-auto w-full max-w-3xl min-w-0 overflow-x-hidden px-3 sm:px-4 py-6 sm:py-8">
         <Link
           href="/"
           className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-teal-300 mb-6 transition-colors"

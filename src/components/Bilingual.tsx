@@ -18,9 +18,9 @@ export function BilingualHeading({
   ptClassName = "text-slate-500 font-normal",
 }: BilingualHeadingProps) {
   return (
-    <Tag className={className}>
-      <span className={enClassName}>{en}</span>
-      <span className={`text-sm ml-1.5 ${ptClassName}`}>/ {pt}</span>
+    <Tag className={`${className} flex flex-col gap-0.5 sm:block`}>
+      <span className={`${enClassName} break-words`}>{en}</span>
+      <span className={`text-sm sm:ml-1.5 ${ptClassName} break-words`}>/ {pt}</span>
     </Tag>
   );
 }
@@ -33,11 +33,12 @@ interface BilingualItemProps {
 
 export function BilingualItem({ en, pt, icon = "✓" }: BilingualItemProps) {
   return (
-    <li className="leading-relaxed">
-      <span className="text-teal-200/90">
-        {icon} {en}
-      </span>
-      <span className="text-slate-500"> — {pt}</span>
+    <li className="leading-snug space-y-1 py-0.5">
+      <p className="text-teal-200/90 break-words [overflow-wrap:anywhere]">
+        <span className="mr-1">{icon}</span>
+        {en}
+      </p>
+      <p className="text-slate-500 text-xs pl-5 break-words [overflow-wrap:anywhere]">{pt}</p>
     </li>
   );
 }
@@ -50,10 +51,10 @@ interface BilingualTextProps {
 
 export function BilingualText({ en, pt, className = "" }: BilingualTextProps) {
   return (
-    <p className={className}>
-      <span className="text-slate-200">{en}</span>
-      <span className="text-slate-500 text-sm"> — {pt}</span>
-    </p>
+    <div className={`space-y-1 ${className}`}>
+      <p className="text-slate-200 break-words [overflow-wrap:anywhere]">{en}</p>
+      <p className="text-slate-500 text-xs break-words [overflow-wrap:anywhere]">{pt}</p>
+    </div>
   );
 }
 

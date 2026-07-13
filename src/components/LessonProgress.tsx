@@ -24,8 +24,8 @@ export function LessonProgress({ currentStep }: LessonProgressProps) {
   const currentIndex = steps.findIndex((s) => s.id === currentStep);
 
   return (
-    <div className="mb-8">
-      <div className="flex items-center gap-1 overflow-x-auto pb-2">
+    <div className="mb-8 min-w-0 max-w-full overflow-hidden">
+      <div className="flex items-center gap-1 overflow-x-auto pb-2 max-w-full [-webkit-overflow-scrolling:touch]">
         {steps.map((step, index) => {
           const isActive = index === currentIndex;
           const isDone = index < currentIndex;
@@ -33,7 +33,7 @@ export function LessonProgress({ currentStep }: LessonProgressProps) {
           return (
             <div key={step.id} className="flex items-center">
               <div
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
+                className={`flex items-center gap-1 rounded-full px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-medium whitespace-nowrap transition-colors shrink-0 ${
                   isActive
                     ? "btn-cosmic text-white"
                     : isDone

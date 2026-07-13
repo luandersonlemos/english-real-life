@@ -60,17 +60,19 @@ export function LessonFlow({
   };
 
   return (
-    <div>
+    <div className="min-w-0 w-full max-w-full overflow-x-hidden">
       {step === "intro" && (
         <section className="space-y-6">
-          <div className="rounded-2xl bg-gradient-to-br from-teal-600/90 via-indigo-600/85 to-violet-700/90 border border-white/15 p-8 text-white shadow-xl shadow-violet-600/25">
+          <div className="rounded-2xl bg-gradient-to-br from-teal-600/90 via-indigo-600/85 to-violet-700/90 border border-white/15 p-5 sm:p-8 text-white shadow-xl shadow-violet-600/25">
             <span className="text-5xl">{block.emoji}</span>
-            <h2 className="mt-4 text-3xl font-bold">
+            <h2 className="mt-4 text-2xl sm:text-3xl font-bold break-words">
               Block {block.number}: {block.titleEn}
             </h2>
-            <p className="mt-2 text-teal-100 text-lg">
+            <p className="mt-2 text-teal-100 text-base sm:text-lg break-words">
               {block.title}
-              <span className="text-white/50 text-base ml-2">/ Bloco {block.number}</span>
+              <span className="text-white/50 text-sm sm:text-base block sm:inline sm:ml-2">
+                / Bloco {block.number}
+              </span>
             </p>
             {block.descriptionEn ? (
               <>
@@ -86,8 +88,8 @@ export function LessonFlow({
             )}
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="rounded-xl glass-panel p-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 min-w-0">
+            <div className="rounded-xl glass-panel p-4 sm:p-5 min-w-0 overflow-hidden">
               <BilingualHeading
                 en="What you'll learn"
                 pt="O que você vai aprender"
@@ -152,7 +154,7 @@ export function LessonFlow({
                 )}
               </ul>
             </div>
-            <div className="rounded-xl glass-panel p-5">
+            <div className="rounded-xl glass-panel p-4 sm:p-5 min-w-0 overflow-hidden">
               <BilingualHeading
                 en="English by Real Life method"
                 pt="Método English by Real Life"
@@ -209,23 +211,23 @@ export function LessonFlow({
             total={block.words.length}
           />
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <button
               type="button"
               disabled={wordIndex === 0}
               onClick={() => setWordIndex((i) => i - 1)}
-              className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors"
+              className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors w-full sm:w-auto"
             >
               ← Previous
             </button>
-            <span className="text-sm text-teal-300 font-medium">
+            <span className="text-sm text-teal-300 font-medium text-center">
               {wordIndex + 1} of {block.words.length}
             </span>
             <button
               type="button"
               disabled={wordIndex === block.words.length - 1}
               onClick={() => setWordIndex((i) => i + 1)}
-              className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors"
+              className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors w-full sm:w-auto"
             >
               Next →
             </button>
@@ -558,12 +560,12 @@ function NavButtons({
   nextLabel?: ReactNode;
 }) {
   return (
-    <div className="flex gap-3 pt-4">
+    <div className="flex flex-col sm:flex-row gap-3 pt-4 w-full min-w-0">
       {showPrev && onPrev && (
         <button
           type="button"
           onClick={onPrev}
-          className="rounded-xl glass-panel px-6 py-3 text-sm font-medium text-slate-300 hover:border-teal-400/35 transition-colors"
+          className="rounded-xl glass-panel px-6 py-3 text-sm font-medium text-slate-300 hover:border-teal-400/35 transition-colors w-full sm:w-auto shrink-0"
         >
           ← Back
         </button>
@@ -571,9 +573,9 @@ function NavButtons({
       <button
         type="button"
         onClick={onNext}
-        className="flex-1 rounded-xl btn-cosmic px-6 py-3 text-sm font-medium text-white transition-all"
+        className="flex-1 min-w-0 w-full rounded-xl btn-cosmic px-4 sm:px-6 py-3 text-sm font-medium text-white transition-all text-center break-words"
       >
-        {nextLabel} →
+        {nextLabel}
       </button>
     </div>
   );
