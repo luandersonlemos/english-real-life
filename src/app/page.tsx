@@ -85,8 +85,8 @@ export default function HomePage() {
           <section className="mx-auto max-w-5xl px-4 pb-4">
             <article className="rounded-2xl border border-violet-400/25 bg-violet-500/10 backdrop-blur-sm px-5 py-4 text-sm text-violet-200">
               Plano <strong>Gratuito</strong> — blocos 1 a 3 liberados.{" "}
-              <Link href="/conta" className="font-semibold underline">
-                Ative o Premium
+              <Link href="/precos" className="font-semibold underline">
+                Assine o Premium
               </Link>{" "}
               para os 24 blocos.
             </article>

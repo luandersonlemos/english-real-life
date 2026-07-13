@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/plans";
+import { isStripeConfigured } from "@/lib/stripe";
 
 export async function GET() {
   if (!isSupabaseConfigured()) {
@@ -19,7 +20,9 @@ export async function GET() {
 
     const { data, error } = await supabase
       .from("profiles")
-      .select("plan, email")
+      .select(
+        "plan, email, subscription_status, premium_source, stripe_subscription_id"
+      )
       .eq("id", user.id)
       .single();
 
@@ -31,6 +34,10 @@ export async function GET() {
       ok: true,
       plan: data.plan,
       email: data.email,
+      subscriptionStatus: data.subscription_status,
+      premiumSource: data.premium_source,
+      hasSubscription: Boolean(data.stripe_subscription_id),
+      stripeEnabled: isStripeConfigured(),
     });
   } catch {
     return NextResponse.json({ ok: false }, { status: 500 });
@@ -61,7 +68,11 @@ export async function POST(request: Request) {
 
     const { error } = await supabase
       .from("profiles")
-      .update({ plan: "premium", updated_at: new Date().toISOString() })
+      .update({
+        plan: "premium",
+        premium_source: "promo",
+        updated_at: new Date().toISOString(),
+      })
       .eq("id", user.id);
 
     if (error) {

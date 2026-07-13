@@ -389,7 +389,7 @@ Escreva situações em `content/journal/` — o motor gera exercícios automatic
 - [x] Autenticação de usuários
 - [x] Progresso na nuvem
 - [x] Planos free (3 blocos) / premium (todos)
-- [ ] Pagamento Stripe
+- [x] Pagamento Stripe (checkout + webhook + portal)
 - [ ] Notificações de revisão
 - [ ] Área do treinador
 

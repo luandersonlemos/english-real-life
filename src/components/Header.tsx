@@ -43,6 +43,12 @@ export function Header() {
           >
             Revisão 5 min
           </Link>
+          <Link
+            href="/precos"
+            className="rounded-lg border border-violet-400/30 bg-violet-500/10 px-3 py-1.5 text-xs font-medium text-violet-200 hover:bg-violet-500/20"
+          >
+            Premium
+          </Link>
           {supabaseEnabled && (
             <Link
               href={user ? "/conta" : "/auth"}
