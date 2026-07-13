@@ -1,17 +1,18 @@
 "use client";
 
+import type { ReactNode } from "react";
 import type { Block, LessonStep } from "@/types";
 
-const steps: { id: LessonStep; label: string }[] = [
-  { id: "intro", label: "Intro" },
-  { id: "words", label: "Palavras" },
-  { id: "verb", label: "Verbo" },
-  { id: "connector", label: "Conector" },
-  { id: "sentences", label: "Frases" },
-  { id: "situations", label: "Situações" },
-  { id: "speaking", label: "Fala" },
-  { id: "review-plan", label: "Revisão" },
-  { id: "mastery", label: "Domínio" },
+const steps: { id: LessonStep; labelEn: string; labelPt: string }[] = [
+  { id: "intro", labelEn: "Intro", labelPt: "Intro" },
+  { id: "words", labelEn: "Words", labelPt: "Palavras" },
+  { id: "verb", labelEn: "Verb", labelPt: "Verbo" },
+  { id: "connector", labelEn: "Connector", labelPt: "Conector" },
+  { id: "sentences", labelEn: "Sentences", labelPt: "Frases" },
+  { id: "situations", labelEn: "Situations", labelPt: "Situações" },
+  { id: "speaking", labelEn: "Speaking", labelPt: "Fala" },
+  { id: "review-plan", labelEn: "Review", labelPt: "Revisão" },
+  { id: "mastery", labelEn: "Mastery", labelPt: "Domínio" },
 ];
 
 interface LessonProgressProps {
@@ -43,7 +44,7 @@ export function LessonProgress({ currentStep }: LessonProgressProps) {
                 <span className="w-4 text-center">
                   {isDone ? "✓" : index + 1}
                 </span>
-                <span className="hidden sm:inline">{step.label}</span>
+                <span>{step.labelEn}</span>
               </div>
               {index < steps.length - 1 && (
                 <div

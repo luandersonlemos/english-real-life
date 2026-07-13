@@ -8,6 +8,8 @@ export const block01: Block = {
   theme: "Rotina diária — café, casa e trabalho",
   description:
     "Aprenda a falar sobre o que você quer no seu dia a dia: café da manhã, água, comida e ir para casa.",
+  descriptionEn:
+    "Learn to talk about what you want in your daily life: breakfast, water, food, and going home.",
   emoji: "☀️",
   tense: "present",
   pronouns: ["I", "You", "We", "They"],

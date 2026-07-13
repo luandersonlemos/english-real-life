@@ -50,6 +50,7 @@ export interface Block {
   titleEn: string;
   theme: string;
   description: string;
+  descriptionEn?: string;
   emoji: string;
   tense: Tense;
   pronouns: Pronoun[];

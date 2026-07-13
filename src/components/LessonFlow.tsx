@@ -2,10 +2,14 @@
 
 import type { Block, LessonStep } from "@/types";
 import { WordCard } from "./WordCard";
+import { BilingualHeading, BilingualItem } from "./Bilingual";
 import { speak } from "@/lib/speech";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
-const tenseLabel = { present: "presente", past: "passado" } as const;
+const tenseLabel = {
+  present: { en: "present", pt: "presente" },
+  past: { en: "past", pt: "passado" },
+} as const;
 
 interface LessonFlowProps {
   block: Block;
@@ -62,63 +66,148 @@ export function LessonFlow({
           <div className="rounded-2xl bg-gradient-to-br from-teal-600/90 via-indigo-600/85 to-violet-700/90 border border-white/15 p-8 text-white shadow-xl shadow-violet-600/25">
             <span className="text-5xl">{block.emoji}</span>
             <h2 className="mt-4 text-3xl font-bold">
-              Bloco {block.number}: {block.title}
+              Block {block.number}: {block.titleEn}
             </h2>
-            <p className="mt-2 text-teal-100 text-lg">{block.titleEn}</p>
-            <p className="mt-4 text-white/90">{block.description}</p>
+            <p className="mt-2 text-teal-100 text-lg">
+              {block.title}
+              <span className="text-white/50 text-base ml-2">/ Bloco {block.number}</span>
+            </p>
+            {block.descriptionEn ? (
+              <>
+                <p className="mt-4 text-white/95 text-lg leading-relaxed">
+                  {block.descriptionEn}
+                </p>
+                <p className="mt-2 text-white/55 text-sm leading-relaxed">
+                  {block.description}
+                </p>
+              </>
+            ) : (
+              <p className="mt-4 text-white/90">{block.description}</p>
+            )}
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="rounded-xl glass-panel p-5">
-              <h3 className="font-semibold text-slate-100 mb-2">O que você vai aprender</h3>
-              <ul className="space-y-2 text-sm text-slate-400">
-                <li>✓ 15 palavras úteis do seu dia a dia</li>
-                <li>
-                  ✓ Verbo <strong>{block.verb.english}</strong> no{" "}
-                  {tenseLabel[block.tense]}
-                </li>
-                <li>
-                  ✓ Conector <strong>{block.connector.english}</strong> para montar
-                  frases
-                </li>
-                <li>✓ Frases com {block.pronouns.join(", ")}</li>
+              <BilingualHeading
+                en="What you'll learn"
+                pt="O que você vai aprender"
+                className="font-semibold mb-3"
+              />
+              <ul className="space-y-2 text-sm">
+                <BilingualItem
+                  en="15 useful everyday words"
+                  pt="15 palavras úteis do seu dia a dia"
+                />
+                <BilingualItem
+                  en={
+                    <>
+                      Verb <strong className="text-teal-300">{block.verb.english}</strong> in the{" "}
+                      {tenseLabel[block.tense].en}
+                    </>
+                  }
+                  pt={
+                    <>
+                      Verbo <strong>{block.verb.english}</strong> no{" "}
+                      {tenseLabel[block.tense].pt}
+                    </>
+                  }
+                />
+                <BilingualItem
+                  en={
+                    <>
+                      Connector <strong className="text-teal-300">{block.connector.english}</strong> to build sentences
+                    </>
+                  }
+                  pt={
+                    <>
+                      Conector <strong>{block.connector.english}</strong> para montar frases
+                    </>
+                  }
+                />
+                <BilingualItem
+                  en={`Sentences with ${block.pronouns.join(", ")}`}
+                  pt={`Frases com ${block.pronouns.join(", ")}`}
+                />
                 {block.pronouns.includes("He") && block.tense === "present" && (
-                  <li>✓ Nova fase: He, She e It — o verbo muda no presente!</li>
+                  <BilingualItem
+                    en="New phase: He, She & It — the verb changes in the present!"
+                    pt="Nova fase: He, She e It — o verbo muda no presente!"
+                  />
                 )}
                 {block.pronouns.includes("He") && block.tense === "past" && (
-                  <li>✓ Fase 3: He, She e It no passado — o verbo NÃO ganha -s!</li>
+                  <BilingualItem
+                    en="Phase 3: He, She & It in the past — no -s on the verb!"
+                    pt="Fase 3: He, She e It no passado — o verbo NÃO ganha -s!"
+                  />
                 )}
-                <li>✓ 3 situações reais para praticar</li>
+                <BilingualItem
+                  en="3 real-life situations to practice"
+                  pt="3 situações reais para praticar"
+                />
                 {block.tense === "past" && !block.pronouns.includes("He") && (
-                  <li>✓ Passado com I, You, We, They — conecta com os blocos do presente</li>
+                  <BilingualItem
+                    en="Past with I, You, We, They — connects to present blocks"
+                    pt="Passado com I, You, We, They — conecta com os blocos do presente"
+                  />
                 )}
               </ul>
             </div>
             <div className="rounded-xl glass-panel p-5">
-              <h3 className="font-semibold text-slate-100 mb-2">Método English by Real Life</h3>
-              <ul className="space-y-2 text-sm text-slate-400">
-                <li>👁️ Aprenda com imagens e associação visual</li>
-                <li>🗣️ Fale desde a primeira aula</li>
-                <li>🔄 Revisão espaçada automática</li>
-                <li>🚫 Sem gramática pesada — frases primeiro</li>
+              <BilingualHeading
+                en="English by Real Life method"
+                pt="Método English by Real Life"
+                className="font-semibold mb-3"
+              />
+              <ul className="space-y-2 text-sm">
+                <BilingualItem
+                  icon="👁️"
+                  en="Learn with images and visual association"
+                  pt="Aprenda com imagens e associação visual"
+                />
+                <BilingualItem
+                  icon="🗣️"
+                  en="Speak from the very first lesson"
+                  pt="Fale desde a primeira aula"
+                />
+                <BilingualItem
+                  icon="🔄"
+                  en="Automatic spaced repetition"
+                  pt="Revisão espaçada automática"
+                />
+                <BilingualItem
+                  icon="🚫"
+                  en="No heavy grammar — phrases first"
+                  pt="Sem gramática pesada — frases primeiro"
+                />
               </ul>
             </div>
           </div>
 
-          <NavButtons onNext={next} showPrev={false} nextLabel="Começar aula" />
+          <NavButtons
+            onNext={next}
+            showPrev={false}
+            nextLabel="Start lesson →"
+          />
         </section>
       )}
 
       {step === "words" && (
         <section className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-100">15 Palavras Úteis</h2>
-            <p className="text-slate-500 mt-1">
+            <h2 className="text-2xl font-bold text-slate-100">15 Useful Words</h2>
+            <p className="text-slate-400 mt-2 text-sm leading-relaxed">
+              Tap the card to reveal. Listen to the pronunciation. Match the emoji to the word.
+            </p>
+            <p className="text-slate-600 mt-1 text-xs">
               Toque no card para revelar. Ouça a pronúncia. Associe o emoji à palavra.
             </p>
           </div>
 
-          <WordCard word={block.words[wordIndex]} index={wordIndex} />
+          <WordCard
+            word={block.words[wordIndex]}
+            index={wordIndex}
+            total={block.words.length}
+          />
 
           <div className="flex items-center justify-between">
             <button
@@ -127,10 +216,10 @@ export function LessonFlow({
               onClick={() => setWordIndex((i) => i - 1)}
               className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors"
             >
-              ← Anterior
+              ← Previous
             </button>
-            <span className="text-sm text-slate-500">
-              {wordIndex + 1} de {block.words.length}
+            <span className="text-sm text-teal-300 font-medium">
+              {wordIndex + 1} of {block.words.length}
             </span>
             <button
               type="button"
@@ -138,12 +227,12 @@ export function LessonFlow({
               onClick={() => setWordIndex((i) => i + 1)}
               className="rounded-xl glass-panel px-4 py-2 text-sm text-slate-300 disabled:opacity-40 hover:border-teal-400/30 transition-colors"
             >
-              Próxima →
+              Next →
             </button>
           </div>
 
           {wordIndex === block.words.length - 1 && (
-            <NavButtons onNext={next} onPrev={prev} nextLabel="Aprender o verbo" />
+            <NavButtons onNext={next} onPrev={prev} nextLabel="Learn the verb →" />
           )}
         </section>
       )}
@@ -155,7 +244,8 @@ export function LessonFlow({
               Verbo do bloco: {block.verb.english.toUpperCase()}
             </h2>
             <p className="text-slate-500 mt-1">
-              {block.verb.portuguese} · Tempo: {tenseLabel[block.tense]} · Pronomes:{" "}
+              {block.verb.portuguese} · Tense / Tempo: {tenseLabel[block.tense].en} /{" "}
+              {tenseLabel[block.tense].pt} · Pronouns / Pronomes:{" "}
               {block.pronouns.join(", ")}
             </p>
           </div>
@@ -460,12 +550,12 @@ function NavButtons({
   onNext,
   onPrev,
   showPrev = true,
-  nextLabel = "Continuar",
+  nextLabel = "Continue →",
 }: {
   onNext: () => void;
   onPrev?: () => void;
   showPrev?: boolean;
-  nextLabel?: string;
+  nextLabel?: ReactNode;
 }) {
   return (
     <div className="flex gap-3 pt-4">
@@ -475,7 +565,7 @@ function NavButtons({
           onClick={onPrev}
           className="rounded-xl glass-panel px-6 py-3 text-sm font-medium text-slate-300 hover:border-teal-400/35 transition-colors"
         >
-          ← Voltar
+          ← Back
         </button>
       )}
       <button

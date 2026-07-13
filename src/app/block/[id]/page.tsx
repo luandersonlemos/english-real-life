@@ -108,7 +108,7 @@ export default function BlockPage() {
           href="/"
           className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-teal-300 mb-6 transition-colors"
         >
-          ← Voltar aos blocos
+          ← Back to blocks
         </Link>
 
         <LessonProgress currentStep={step} block={block} />
